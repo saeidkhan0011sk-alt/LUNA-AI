@@ -1,0 +1,34 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install Cordova / Capacitor
+      run: |
+        npm install -g cordova
+
+    - name: Prepare Android Project
+      run: |
+        cordova create myApp com.luna.ai LunaAI
+        cd myApp
+        cordova platform add android
+
+    - name: Upload APK Artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: luna-app-apk
+        path: myApp/platforms/android/app/build/outputs/apk/debug/
