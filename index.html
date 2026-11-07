@@ -3,63 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>લUNA - Personal AI Assistant</title>
+  <title>LUNA - AI Assistant</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="space-background"></div>
-  
   <div class="app-container">
-    <!-- ৩ডি রোবটিক সিলভার ফেস ও আরজিবি গ্লোয়িং স্ক্রিন -->
-    <div class="visual-screen">
-      <div class="rgb-glow-ring"></div>
-      <div class="ai-face-container">
-        <!-- আপনার দেওয়া ইমেজ বা থ্রিডি সিলভার ফেস (নীল চোখ) -->
-        <img src="luna-face.png" alt="Luna Face" id="luna-face">
+    <!-- আপনার দেওয়া মূল ড্যাশবোর্ড ও থ্রিডি ইন্টারফেস ব্যাকগ্রাউন্ড -->
+    <div class="hud-screen">
+      <div class="header-section">
+        <span class="top-icon">A</span>
+        <h1 class="luna-title">LUNA</h1>
+        <button class="settings-gear" onclick="openSettings()">⚙️</button>
       </div>
-      <h1 class="ai-name">LUNA</h1>
-      <p id="status-text">Ready to Listen...</p>
+
+      <!-- রোবটিক সিলভার ফেস (নীল চোখ) -->
+      <div class="face-frame">
+        <img src="luna-face.jpg" alt="Luna Face" id="luna-face">
+      </div>
+
+      <p id="status-text">Ready to Listen</p>
+
+      <!-- ড্যাশবোর্ড গ্রিড অপশনসমূহ (আপনার ছবির আদলে) -->
+      <div class="hud-grid">
+        <div class="hud-card" onclick="openSection('profile')">
+          <span class="card-icon">🧠</span>
+          <h3>CUSTOM AI PROFILE</h3>
+        </div>
+        <div class="hud-card" onclick="openSection('search')">
+          <span class="card-icon">🔍</span>
+          <h3>CONTEXT SEARCH</h3>
+        </div>
+        <div class="hud-card" onclick="openSection('voice')">
+          <span class="card-icon">🎙️</span>
+          <h3>VOICE SETTINGS</h3>
+        </div>
+        <div class="hud-card" onclick="openSection('tasks')">
+          <span class="card-icon">📊</span>
+          <h3>TASK MANAGER</h3>
+        </div>
+      </div>
+
+      <!-- নিচের চ্যাট ও ভয়েস বার -->
+      <div class="bottom-control-bar">
+        <button id="mic-toggle" onclick="toggleMic()">🎙️</button>
+        <input type="text" id="user-input" placeholder="লুনার সাথে কথা বলুন..." onkeypress="handleKeyPress(event)">
+        <button onclick="sendMessage()">পাঠান</button>
+      </div>
     </div>
 
-    <!-- হোম পেজের ৬টিভ প্যানেল (Chat, Memory, Soul, Tasks, Headlines, Settings) -->
-    <div class="dashboard-grid">
-      <div class="dash-card" onclick="openPanel('chat')">
-        <div class="icon">💬</div>
-        <h3>CHAT</h3>
-      </div>
-      <div class="dash-card" onclick="openPanel('memory')">
-        <div class="icon">🧠</div>
-        <h3>MEMORY</h3>
-      </div>
-      <div class="dash-card" onclick="openPanel('soul')">
-        <div class="icon">✨</div>
-        <h3>SOUL</h3>
-      </div>
-      <div class="dash-card" onclick="openPanel('tasks')">
-        <div class="icon">📋</div>
-        <h3>TODAY TASKS</h3>
-      </div>
-      <div class="dash-card" onclick="openPanel('headlines')">
-        <div class="icon">📰</div>
-        <h3>TODAY HEADLINES</h3>
-      </div>
-      <div class="dash-card" onclick="openPanel('settings')">
-        <div class="icon">⚙️</div>
-        <h3>SETTINGS</h3>
-      </div>
-    </div>
-
-    <!-- চ্যাট ও ভয়েস ইনপুট বার -->
-    <div class="interaction-bar">
-      <button id="mic-btn" onclick="toggleMic()">🎙️</button>
-      <input type="text" id="user-input" placeholder="লুনার সাথে কথা বলুন..." onkeypress="handleKeyPress(event)">
-      <button onclick="sendMessage()">পাঠান</button>
-    </div>
-
-    <!-- সেটিংস ও কণ্ঠস্বর (Voice Options) মডাল -->
+    <!-- সেটিংস ও ভয়েস সিলেকশন মডাল -->
     <div id="settings-modal" class="modal hidden">
       <div class="modal-content">
-        <h3>লুনা সেটিংস</h3>
+        <h3>লুনা সেটিংস ও কণ্ঠস্বর</h3>
         
         <label>Google Gemini API Key:</label>
         <input type="password" id="api-key-input" placeholder="আপনার এপিআই কি দিন">
