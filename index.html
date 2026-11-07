@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>লুনা - এআই অ্যাসিস্ট্যান্ট</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- ৩ডি ফেস ও ভিজ্যুয়াল এরিয়া -->
+    <div class="visual-screen">
+      <div class="glow-ring"></div>
+      <div class="ai-face-container">
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop" alt="Luna Face" id="luna-face">
+      </div>
+      <h2 class="ai-name">LUNA</h2>
+      <p id="status-text">Ready to Listen</p>
+    </div>
+
+    <!-- হোম পেজের ৬টি অপশন প্যানেল -->
+    <div class="dashboard-grid">
+      <div class="dash-card" onclick="openSection('chat')">
+        <h3>CHAT</h3>
+        <p>লেখা ও কথোপকথনের ইতিহাস</p>
+      </div>
+      <div class="dash-card" onclick="openSection('memory')">
+        <h3>MEMORY</h3>
+        <p>মনে রাখা কথা</p>
+      </div>
+      <div class="dash-card" onclick="openSection('soul')">
+        <h3>SOUL</h3>
+        <p>লুনার ব্যক্তিত্ব</p>
+      </div>
+      <div class="dash-card" onclick="openSection('tasks')">
+        <h3>TODAY TASKS</h3>
+        <p>আজকের কাজ</p>
+      </div>
+      <div class="dash-card" onclick="openSection('headlines')">
+        <h3>TODAY HEADLINES</h3>
+        <p>আজকের খবর</p>
+      </div>
+      <div class="dash-card" onclick="openSection('settings')">
+        <h3>SETTINGS</h3>
+        <p>চাবি ও কণ্ঠ</p>
+      </div>
+    </div>
+
+    <!-- চ্যাট ও ভয়েস ইনপুট সেকশন -->
+    <div class="interaction-bar">
+      <button id="mic-btn" onclick="toggleMic()">🎙️</button>
+      <input type="text" id="user-input" placeholder="লুনার সাথে কথা বলুন..." onkeypress="handleKeyPress(event)">
+      <button onclick="sendMessage()">পাঠান</button>
+    </div>
+
+    <!-- সেটিংস ও ফিচার মডাল -->
+    <div id="settings-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>সেটিংস ও কনফিগারেশন</h3>
+        
+        <label for="api-key-input">Google Gemini API Key:</label>
+        <input type="password" id="api-key-input" placeholder="আপনার এপিআই কি দিন">
+        
+        <label for="voice-select">কণ্ঠ বদটাও (মেয়ের কণ্ঠ বেছে নাও):</label>
+        <select id="voice-select">
+          <option value="voice1">লুনা - কণ্ঠ ১ (সফট ও মিষ্টি)</option>
+          <option value="voice2">লুনা - কণ্ঠ ২ (স্মার্ট ও প্রফেশনাল)</option>
+          <option value="voice3">লুনা - কণ্ঠ ৩ (বোল্ড ও ক্লিয়ার)</option>
+        </select>
+
+        <div class="modal-buttons">
+          <button onclick="saveSettings()">সেভ করুন</button>
+          <button onclick="toggleSettings()" class="cancel-btn">বন্ধ করুন</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
